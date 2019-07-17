@@ -1,7 +1,7 @@
-#Gestão de comissões Televendas
+# Gestão de comissões Televendas
 
 
-##Squad 4:
+## Squad 4:
 - [Fábio Matheus Mantelli](https://github.com/fabiomantelli)
 - [Fillipe Calza](https://github.com/fcalza)
 - [Julio Cezar Riffel](https://github.com/julioriffel)
@@ -9,13 +9,13 @@
 - [Paulo Rogerio Kraemer](https://github.com/paulork)
 
 
-##Objetivo
+## Objetivo
 O objetivo desse produto é de calcular a comissão que cada vendedor do sistema ao longo dos meses seguindo a regra de comissão selecionada na hora que o vendedor for cadastrado. Seu objetivo é implementar os requisitos listados abaixo e criar uma API para que diferentes front-ends possam interagir com o seu sistema.
 
-##Contextualização
+## Contextualização
 Uma empresa de televendas gostaria de armazenar e calcular a comissão dos seus vendedores ao longo do tempo de acordo com o plano de comissão que eles escolheram. Para isso eles precisam de um sistema que fará tal cálculo da comissão ao adicionar o valor mensal das vendas no sistema. A empresa também precisa saber se as vendas dos seus vendedores estão satisfatórias através do cálculo da média ponderada dos valores de vendas nos últimos meses, e caso não esteja eles deverão ser notificados através do email.
 
-##Requisitos técnicos obrigatórios
+## Requisitos técnicos obrigatórios
 - Cadastrar Vendedores
 
 Cadastro dos vendedores de telemarketing que irão receber comissões. Para o cadastro é necessário o nome, endereço, telefone, idade, email, CPF e o plano de comissões.
@@ -127,7 +127,7 @@ Resposta:
 
 
 ________
-##Sobre a apresentação do projeto
+## Sobre a apresentação do projeto
 
 Para que todos do grupo tenham a chance de apresentar seu trabalho, a apresentação deve ser feita de forma individual. Vocês podem ensaiar juntos, fazer um roteiro parecido, mas é importante que cada participante faça sua própria gravação.
 
@@ -149,10 +149,25 @@ Apresentação pessoal
 - Dois principais acertos ou escolhas acertadas que fizeram diferença no projeto e por quê.
 
 
-Para ficar mais fácil, dê uma olhada nesta apresentação de projeto de um programa que realizamos em Joinville.
- https://drive.google.com/file/d/1Owc4VYM492svCn7RlMnNs_Bk4ZGjZkvj/view
+Para ficar mais fácil, dê uma olhada [nesta apresentação](https://drive.google.com/file/d/1Owc4VYM492svCn7RlMnNs_Bk4ZGjZkvj/view) de projeto de um programa que realizamos em Joinville.
  Neste caso, os participantes desenvolveram em squads uma aplicação (backend e frontend) que buscava anunciar animais perdidos ou animais para adoção. Assim, pessoas interessadas poderiam colaborar para adotar e/ou encontrar um pet. Fiz alguns comentários na apresentação para ajudar vocês! :)
 
-####Como enviar os vídeos?
+#### Como enviar os vídeos?
 
 Após terem determinado o roteiro e feito suas gravações individuais, encaminhe por e-mail o link do vídeo no YouTube (lembre de colocá-lo como não listado, por favor). No título, use a seguinte descrição: “Apresentação projeto final [Seu Nome] [nome de sua squad]” . O link do vídeo deve ser enviado para mario.machado@codenation.dev e ingrid.adam@codenation.dev, juntamente com o link do Code Review do projeto na plataforma Codenation, com o assunto “AceleraDev Python - Squad [nº da sua squad]” até o dia 31/07/2019.
+
+### Start Project
+
+`git clone git@github.com:codenation-dev/squad-4-ad-python-2.git`
+
+`cd squad-4-ad-python-2`
+
+`python -m venv env`
+
+`source env/bin/activate`
+
+`pip install -r requirements.txt`
+
+`python manager.py migrate`
+
+`python manage.py runserver`
