@@ -55,6 +55,12 @@ $ docker-compose build [web db]
 $ docker-compose up [web db] [-d]
 ```
 
+Criar super usuário
+```
+$./manage.py createsuperuser
+```
+> Após este comando é necessário prosseguir informando os dados requisitados (username, email, password)
+
 ### Testes
 
 ```
