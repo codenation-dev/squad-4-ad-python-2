@@ -5,6 +5,9 @@ from api.views.seller import SellerListView, SellerView
 from api.views.sale import SaleListView, SaleView
 from api.views.plan import PLanListView, PlanView
 
+from api.views.check_comission import check_comission_view
+from api.views.month_comission import month_comission_view
+
 from api.views.user import UserViewSet
 
 router = routers.DefaultRouter()
@@ -28,9 +31,11 @@ plan_urls = [
 ]
 
 comission_functions_urls = [
-
+    path('month_comission/', month_comission_view, name="month_comission"),
+    path('check_comission/', check_comission_view, name="check_comission"),
 ]
 
+# URLPATTERNS is all of the above
 urlpatterns = (
         user_urls +
         seller_urls +
