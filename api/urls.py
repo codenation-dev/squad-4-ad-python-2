@@ -22,11 +22,13 @@ sales_urls = [
     path('sale/<int:pk>/', SaleView.as_view(), name="sale"),
 ]
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
-urlpatterns = [
-    url(r'^', include(router.urls)),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+plan_urls = [
+    path('plan/', PLanListView.as_view(), name="comission_plan_list"),
+    path('plan/<int:pk>/', PlanView.as_view(), name="comission_plan"),
+]
+
+comission_functions_urls = [
+
 ]
 
 urlpatterns = (
