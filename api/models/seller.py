@@ -1,6 +1,6 @@
 from django.db import models
 
-from api.models import Plan
+from api.models.plan import Plan
 
 NAME_MAX_LENGTH = 100
 ADDRESS_MAX_LENGTH = 1000
