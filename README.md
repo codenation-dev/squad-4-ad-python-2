@@ -17,6 +17,11 @@
 - [Pipenv](https://pypi.org/project/pipenv/2018.11.26/) (2018.11.26)
 - [git](https://git-scm.com/) (2) 
 
+Opcional (para execução com docker)
+
+- [Docker](https://docs.docker.com/install/)
+- [Docker-compose](https://docs.docker.com/compose/)
+
 ### Instalação
 
 ```
@@ -37,17 +42,24 @@ Para acessar o ambiente ativo, execute `$ pipenv shell`
 
 ### Execução
 
+No diretório do projeto
 ```
 $ ./manage.py migrate
 $ ./manage.py runserver [host]:[port]
 ```
 
-- Using Docker & docker-compose
-> requires [docker](link) and [docker-compose](link)
+- Execução com Docker CE & Docker-compose
+> *Depende de [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/)
 ```
 $ docker-compose build [web db]
 $ docker-compose up [web db] [-d]
 ```
+
+Criar super usuário
+```
+$./manage.py createsuperuser
+```
+> Após este comando é necessário prosseguir informando os dados requisitados (username, email, password)
 
 ### Testes
 
