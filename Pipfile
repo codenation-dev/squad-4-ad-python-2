@@ -8,6 +8,11 @@ verify_ssl = true
 [packages]
 django = "==2.2.3"
 djangorestframework = "==3.9.4"
+django-filter = "==2.1.0"
+psycopg2-binary = "==2.8.2"
+drf-yasg = "==1.16.0"
+markdown = "==3.1.1"
+pyyaml = "==5.1.1 "
 
 [requires]
 python_version = "3.7"
