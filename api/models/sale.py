@@ -23,6 +23,9 @@ class Sale(models.Model):
         default=DEFAULT_COMISSION_VALUE,
     )
 
+    class Meta:
+        unique_together = ('seller', 'year', 'month')
+
     def __str__(self):
         return '{0}/{1} R$ {2}'.format(self.month, self.year, self.amount)
 
