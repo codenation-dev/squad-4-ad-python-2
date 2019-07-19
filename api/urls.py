@@ -14,7 +14,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
 user_urls = [
-    # TODO Verificar se esta model é necessária na API
+    # TODO Verificar se esta router com users é necessária na API
     path(r'', include(router.urls))
 ]
 
