@@ -25,3 +25,14 @@ class Sale(models.Model):
 
     def __str__(self):
         return '{0}/{1} R$ {2}'.format(self.month, self.year, self.amount)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        pan = self.seller.plan
+
+        if (self.amount >= pan.min_value):
+            self.comission_value = self.amount * pan.upper_percentage / 100
+        else:
+            self.comission_value = self.amount * pan.lower_percentage / 100
+
+        super(Sale, self).save()
