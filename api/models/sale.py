@@ -1,3 +1,6 @@
+import datetime
+
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from api.models.seller import Seller
@@ -9,9 +12,9 @@ DEFAULT_COMISSION_VALUE = 0.0
 class Sale(models.Model):
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
 
-    year = models.IntegerField()
+    year = models.IntegerField(validators=[MaxValueValidator(datetime.datetime.now().year), MinValueValidator(1990)])
 
-    month = models.IntegerField()
+    month = models.IntegerField(validators=[MaxValueValidator(12), MinValueValidator(1)])
 
     amount = models.DecimalField(
         max_digits=DEFAULT_MAX_DIGITS, decimal_places=DEFAULT_DECIMAL_PLACES
@@ -21,6 +24,7 @@ class Sale(models.Model):
         max_digits=DEFAULT_MAX_DIGITS,
         decimal_places=DEFAULT_DECIMAL_PLACES,
         default=DEFAULT_COMISSION_VALUE,
+        editable=False,
     )
 
     class Meta:
