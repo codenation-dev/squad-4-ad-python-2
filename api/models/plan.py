@@ -19,3 +19,6 @@ class Plan(models.Model):
     upper_percentage = models.DecimalField(
         max_digits=DEFAULT_MAX_DIGITS, decimal_places=DEFAULT_DECIMAL_PLACES
     )
+
+    def __str__(self):
+        return self.name
