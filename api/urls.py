@@ -13,7 +13,10 @@ from api.views.user import UserViewSet
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
-user_urls = [path(r'', include(router.urls))]
+user_urls = [
+    # TODO Verificar se esta model é necessária na API
+    path(r'', include(router.urls))
+]
 
 seller_urls = [
     path('seller/', SellerListView.as_view(), name="seller_list"),
