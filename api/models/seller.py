@@ -23,3 +23,6 @@ class Seller(models.Model):
     cpf = models.CharField(max_length=CPF_MAX_LENGTH)
 
     plan = models.ForeignKey(Plan, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
