@@ -1,0 +1,17 @@
+-   model: api.plan
+    pk: 1
+    fields:
+        name: Primeiro plano
+        lower_percentage: '0.050'
+        min_value: '4500.000'
+        upper_percentage: '0.100'
+-   model: api.seller
+    pk: 1
+    fields:
+        name: Primeiro Vendedor
+        address: Joinville
+        phone: 55 47 99999999
+        birthday: 2019-01-01
+        email: teste@teste.com
+        cpf: '12345678901'
+        plan: 1
