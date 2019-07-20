@@ -19,18 +19,18 @@ user_urls = [
 ]
 
 seller_urls = [
-    path('seller/', SellerListView.as_view(), name="seller_list"),
-    path('seller/<int:pk>/', SellerView.as_view(), name="seller"),
+    path('sellers/', SellerListView.as_view(), name="sellers_list"),
+    path('sellers/<int:pk>/', SellerView.as_view(), name="sellers"),
 ]
 
 sales_urls = [
-    path('sale/', SaleListView.as_view(), name="sale_list"),
-    path('sale/<int:pk>/', SaleView.as_view(), name="sale"),
+    path('sales/', SaleListView.as_view(), name="sales_list"),
+    path('sales/<int:pk>/', SaleView.as_view(), name="sales"),
 ]
 
 plan_urls = [
-    path('plan/', PLanListView.as_view(), name="comission_plan_list"),
-    path('plan/<int:pk>/', PlanView.as_view(), name="comission_plan"),
+    path('plans/', PLanListView.as_view(), name="comission_plans_list"),
+    path('plans/<int:pk>/', PlanView.as_view(), name="comission_plans"),
 ]
 
 comission_functions_urls = [
