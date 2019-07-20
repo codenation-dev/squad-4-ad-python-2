@@ -30,10 +30,12 @@ $ cd squad-4-ad-python-2
 
 $ pip install pipenv
 
-$ pipenv install
+$ pipenv install [--dev]
 ```
 
 > Ao executar o comando `$ pipenv install`, um ambiente virtual será criado automaticamente, caso não haja um ambiente virtual já ativo.
+
+> O argumento `--dev` instalará as dependências para desenvolvimento
 
 Para verificar o caminho do ambiente virtual criado, execute `$ pipenv --venv`.
 
@@ -66,3 +68,23 @@ $./manage.py createsuperuser
 ```
 $ ./manage.py test
 ```
+
+### Cobertura de testes
+
+Cobertura de testes do app `api`.
+
+Executar coverage:
+```
+$ coverage run --source='.' manage.py test api
+```
+> Este comando executará os testes e gerará os dados de cobertura, e que poderão ser acessados com os comandos abaixo  
+
+Visualizar cobertura no terminal
+```
+$ coverage report
+```
+Visualizar cobertura em html
+```
+$ coverage html
+```
+> Apoś executar o comando acima, será possível verificar a cobertura abrindo o arquivo html gerado em `htmlcov/index.html`
