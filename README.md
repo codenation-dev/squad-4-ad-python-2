@@ -30,7 +30,7 @@ A documentação da API foi gerada no formato OpenAPI, com a biblioteca [drf-yas
 A qual provê interfaces (swagger e redoc) para visualizar a documentação e interagir com os endpoints da API.
 
 Exemplo da documentação dos endpoints API, acessível em `swagger/`. 
-![](docs/swagger.png) 
+![](docs/swagger_3.png) 
 
 ### Requisitos
 
