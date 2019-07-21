@@ -1,0 +1,7 @@
+[run]
+omit =
+    api/tests/*
+    manage.py
+    televendas/*
+    fixtures/*
+    venv/*
