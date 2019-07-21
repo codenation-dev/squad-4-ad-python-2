@@ -5,7 +5,7 @@ from api.models import Sale, Seller
 
 
 @api_view(["GET"])
-def month_comission_view(request, pk):
+def monthly_comission_view(request, pk):
     print(pk)
 
     r = []
