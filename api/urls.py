@@ -40,16 +40,9 @@ comission_functions_urls = [
 
 # URLPATTERNS is all of the above
 urlpatterns = (
-        user_urls +
-        seller_urls +
-        sales_urls +
-        plan_urls +
-        comission_functions_urls
+    user_urls +
+    seller_urls +
+    sales_urls +
+    plan_urls +
+    comission_functions_urls
 )
-
-# urlpatterns = [
-#     path('sellers/', views.sellers),
-#     path('comissions/', views.comissions),
-#     path('vendedores/<int:month>/', views.vendedores),  # todo <int:year>/<str:month>/
-#     path('check_commision/', views.check_commision)
-# ]
