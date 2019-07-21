@@ -2,7 +2,7 @@ from django.urls import include, path
 from rest_framework import routers
 
 from api.views.check_comission import check_comission_view
-from api.views.month_comission import month_comission_view
+from api.views.monthly_comission import monthly_comission_view
 from api.views.plan import PLanListView, PlanView
 from api.views.sale import SaleListView, SaleView
 from api.views.seller import SellerListView, SellerView
@@ -32,7 +32,7 @@ plan_urls = [
 ]
 
 comission_functions_urls = [
-    path('month_comission/<int:pk>/', month_comission_view, name="month_comission"),
+    path('monthly_comission/<int:pk>/', monthly_comission_view, name="month_comission"),
     path('check_comission/', check_comission_view, name="check_comission"),
 ]
 
