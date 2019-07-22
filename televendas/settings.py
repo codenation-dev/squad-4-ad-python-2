@@ -1,3 +1,5 @@
+import environ
+import sys
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -9,8 +11,31 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '=uowy52@8=dmu*ozmkd)2i%lkgpic361zs1b9y!qua%2h2a0a!'
 
+# chooses .env file according for tests or default
+TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
+ENV_FILE = 'televendas/env_test' if TESTING else 'televendas/.env'
+
+env = environ.Env(
+    DEBUG=(bool, True),
+    EMAIL_USE_TLS=(bool, True)
+)
+
+# Enforces the use of a .env file
+if not os.path.isfile("televendas/.env"):
+    raise Exception(f"No file named '{ENV_FILE}' found! Open 'televendas/.env.example' to learn how to set a .env file")
+
+env.read_env(env_file=ENV_FILE)
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
+
+# These environment variables should be set in .env file, see as 'televendas/.env.example'
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
+EMAIL_PORT = env.int('EMAIL_PORT', default=587)
+EMAIL_HOST = env.str('EMAIL_HOST')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -67,6 +92,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'TEST': {
+           'NAME': os.path.join(BASE_DIR, 'db_test.sqlite3'),
+        }
     }
 }
 
@@ -106,17 +134,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #    'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    # ],
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    # 'PAGE_SIZE': 20
-}
-
-
+# MODELS DEFAULTS
 DEFAULT_MAX_DIGITS = 10
 DEFAULT_DECIMAL_PLACES = 2
 DEFAULT_PERCENT_DECIMAL_PLACES = 4

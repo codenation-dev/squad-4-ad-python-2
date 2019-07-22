@@ -1,0 +1,7 @@
+DEBUG=false
+
+EMAIL_USE_TLS=true
+EMAIL_PORT=587
+EMAIL_HOST=smtp.mail.com
+EMAIL_HOST_USER=mail@mail.com
+EMAIL_HOST_PASSWORD=fake_password
