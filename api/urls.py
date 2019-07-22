@@ -27,8 +27,8 @@ sales_urls = [
 ]
 
 plan_urls = [
-    path('plans/', PLanListView.as_view(), name="comission_plans_list"),
-    path('plans/<int:pk>/', PlanView.as_view(), name="comission_plans"),
+    path('plans/', PLanListView.as_view(), name="plans_list"),
+    path('plans/<int:pk>/', PlanView.as_view(), name="plans"),
 ]
 
 comission_functions_urls = [
