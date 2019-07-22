@@ -43,6 +43,9 @@ Para acessar o ambiente ativo, execute `$ pipenv shell`
 
 
 ### Execução
+> As variáveis de ambiente para o projeto, como debug e configurações de e-mail, devem estar setadas no arquivo `televendas/.env`, caso o arquivo não exista uma exceção será levantada.
+
+> Há um arquivo de exemplo em [televendas/.env.example](televendas/.env.example).
 
 No diretório do projeto
 ```
