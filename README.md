@@ -10,6 +10,27 @@
 - [Luan Fernando de Souza Ferreira](https://github.com/luanfsf)
 - [Paulo Rogerio Kraemer](https://github.com/paulork)
 
+### API 
+
+O projeto final é uma API, utilizando [Django](https://www.djangoproject.com/) como framework, e a biblioteca ou toolkit [Django REST Framework](https://www.django-rest-framework.org/).
+
+No contexto do projeto, esta API será utilizada por uma empresa de televendas, para calcular a comissão dos vendedores, de acordo com um plano de comissões. 
+
+
+### Modelo de dados
+De acordo com os requisitos há três entidades principais, conforme diagrama abaixo:
+- `Plan` para os planos de comissão;
+- `Seller` para os vendedores;
+- `Sale` para as vendas;
+ 
+![](media/mer.png)
+
+### Documentação
+A documentação da API foi gerada no formato OpenAPI, com a biblioteca [drf-yasg](https://drf-yasg.readthedocs.io/en/stable/).
+A qual provê interfaces (swagger e redoc) para visualizar a documentação e interagir com os endpoints da API.
+
+Exemplo da documentação dos endpoints API, acessível em `swagger/`. 
+![](media/swagger_3.png) 
 
 ### Requisitos
 
