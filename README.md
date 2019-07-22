@@ -23,14 +23,14 @@ De acordo com os requisitos há três entidades principais, conforme diagrama ab
 - `Seller` para os vendedores;
 - `Sale` para as vendas;
  
-![](docs/mer.png)
+![](media/mer.png)
 
 ### Documentação
 A documentação da API foi gerada no formato OpenAPI, com a biblioteca [drf-yasg](https://drf-yasg.readthedocs.io/en/stable/).
 A qual provê interfaces (swagger e redoc) para visualizar a documentação e interagir com os endpoints da API.
 
 Exemplo da documentação dos endpoints API, acessível em `swagger/`. 
-![](docs/swagger_3.png) 
+![](media/swagger_3.png) 
 
 ### Requisitos
 
