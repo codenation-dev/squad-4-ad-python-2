@@ -111,9 +111,6 @@ def send_email_sale_notification(seller: Seller):
     :param seller: Seller
     :return:
     """
-    if DEBUG:
-        print("EMAIL WON'T BE SEND WHILE DEBUGGING")
-        return
 
     subject = 'Suas vendas estão abaixo da média!'
     from_email = EMAIL_HOST_USER

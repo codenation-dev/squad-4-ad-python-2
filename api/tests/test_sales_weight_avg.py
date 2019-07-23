@@ -17,6 +17,14 @@ class TestSalesWeightAvg(BaseApiTest):
                 month=month
             )
 
+    def create_sale(self, seller, year, month, amount):
+        return Sale.objects.create(
+            seller=seller,
+            amount=amount,
+            year=year,
+            month=month
+        )
+
     def get_seller(self):
         return Seller.objects.create(
             name="test",
@@ -28,7 +36,7 @@ class TestSalesWeightAvg(BaseApiTest):
             plan=Plan.objects.all().first()
         )
 
-    def test_const_sales_weight_avg(self):
+    def test_sales_weight_avg(self):
         CONSTANT_AMOUNT = 500
         MAX_LAST_SALES = 5
 
@@ -43,4 +51,32 @@ class TestSalesWeightAvg(BaseApiTest):
         self.assertEquals(
             sale_weighted_avg,
             CONSTANT_AMOUNT
+        )
+
+    def test_const_sales_weight_avg(self):
+        MAX_LAST_SALES = 5
+        YEAR = 2019
+        JANUARY = 1
+        FEBRUARY = 2
+
+        seller = self.get_seller()
+
+        january_sale = self.create_sale(seller=seller, month=JANUARY, year=YEAR, amount=4500)
+        february_sale = self.create_sale(seller=seller, month=FEBRUARY, year=YEAR, amount=6700)
+
+        january_weight = 1
+
+        february_weight = 2
+
+        weights_sum = january_weight + february_weight
+
+        weighted_avg = ((january_sale.amount * january_weight) + (february_sale.amount * february_weight)) / weights_sum
+
+        last_sales = get_seller_last_sales(seller=seller, max_last_sales=MAX_LAST_SALES)
+
+        sale_weighted_avg = sales_weight_avg(sales=last_sales)
+
+        self.assertEquals(
+            sale_weighted_avg,
+            weighted_avg
         )
