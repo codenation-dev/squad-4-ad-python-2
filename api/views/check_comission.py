@@ -30,11 +30,10 @@ def check_comission_view(request):
     return Response({"email_sent": email_sent})
 
 
-def sales_weight_avg(sales, percentage):
+def sales_weight_avg(sales):
     """
-    Returns the sales (weighted average) - percentage
+    Returns the sales weighted average
     :param sales: list
-    :param percentage: number
     :return: numpy.float64
     """
     sales_values = array([sale['amount'] for sale in sales], dtype=dtype(float))
@@ -43,11 +42,20 @@ def sales_weight_avg(sales, percentage):
 
     weighted_avg = average(a=sales_values, weights=weights)
 
-    percentage_cut = weighted_avg / percentage
+    return weighted_avg
 
-    weighted_avg_minus_percentage = weighted_avg - percentage_cut
 
-    return weighted_avg_minus_percentage
+def percent(number: int = 10):
+    """
+    Considers number as integer percentage and converts to standard percentage
+    :param number:
+    :return: float
+    """
+    return number / 100.0
+
+
+def sale_percentage(sale_avg, percentage):
+    return sale_avg * percentage
 
 
 def should_notify_user(seller, amount):
@@ -59,7 +67,7 @@ def should_notify_user(seller, amount):
     :return: boolean
     """
     MAX_LAST_SALES = 5
-    PERCENTAGE = 10
+    PERCENTAGE = percent(10)
 
     weight_sales = get_seller_last_sales(seller=seller, max_last_sales=MAX_LAST_SALES)
 
@@ -67,9 +75,13 @@ def should_notify_user(seller, amount):
     if not seller_has_sales:
         return False
 
-    sales_weighted_average = sales_weight_avg(sales=weight_sales, percentage=PERCENTAGE)
+    sales_weighted_average = sales_weight_avg(sales=weight_sales)
 
-    return True if amount < sales_weighted_average else False
+    percentage_cut = sale_percentage(sale_avg=sales_weighted_average, percentage=PERCENTAGE)
+
+    weighted_avg_minus_percentage = sales_weighted_average - percentage_cut
+
+    return True if amount < weighted_avg_minus_percentage else False
 
 
 def get_seller_last_sales(seller, max_last_sales):
