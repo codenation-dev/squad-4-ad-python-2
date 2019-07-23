@@ -32,7 +32,7 @@ plan_urls = [
 ]
 
 comission_functions_urls = [
-    path('monthly_comission/<int:pk>/', monthly_comission_view, name="month_comission"),
+    path('monthly_comission/<int:month>/', monthly_comission_view, name="monthly_comission"),
     path('check_comission/', check_comission_view, name="check_comission"),
 ]
 
