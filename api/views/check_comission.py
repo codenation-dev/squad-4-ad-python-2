@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
@@ -17,7 +19,7 @@ def check_comission_view(request):
     data = request.data
 
     seller_id = data.get('seller')
-    amount = data.get('amount')
+    amount = Decimal(data.get('amount'))
 
     seller = get_object_or_404(Seller, id=seller_id)
 
@@ -30,11 +32,11 @@ def check_comission_view(request):
     return Response({"email_sent": email_sent})
 
 
-def sales_weight_avg(sales):
+def sales_weight_avg(sales: list):
     """
     Returns the sales weighted average
     :param sales: list
-    :return: numpy.float64
+    :return: Decimal
     """
     sales_values = array([sale['amount'] for sale in sales], dtype=dtype(float))
 
@@ -42,7 +44,7 @@ def sales_weight_avg(sales):
 
     weighted_avg = average(a=sales_values, weights=weights)
 
-    return weighted_avg
+    return Decimal(weighted_avg)
 
 
 def percent(number: int = 10):
@@ -51,19 +53,19 @@ def percent(number: int = 10):
     :param number:
     :return: float
     """
-    return number / 100.0
+    return Decimal(number) / 100
 
 
-def sale_percentage(sale_avg, percentage):
+def sale_percentage(sale_avg: Decimal, percentage: Decimal):
     return sale_avg * percentage
 
 
-def should_notify_user(seller, amount):
+def should_notify_user(seller: Seller, amount: Decimal):
     """
     Checks if user should or should not be notified about under performing sales,
     according to specified rules.
     :param seller: Seller
-    :param amount: int float
+    :param amount: Decimal
     :return: boolean
     """
     MAX_LAST_SALES = 5
@@ -84,10 +86,10 @@ def should_notify_user(seller, amount):
     return True if amount < weighted_avg_minus_percentage else False
 
 
-def get_seller_last_sales(seller, max_last_sales):
+def get_seller_last_sales(seller: Seller, max_last_sales: int):
     """
     Returns the seller last max_last_sales
-    :param seller:
+    :param seller: Seller
     :param max_last_sales:
     :return: list
     """
@@ -103,7 +105,7 @@ def get_seller_last_sales(seller, max_last_sales):
     return weight_sales
 
 
-def send_email_sale_notification(seller):
+def send_email_sale_notification(seller: Seller):
     """
     Sends e-mail to seller about under performing sales.
     :param seller: Seller
