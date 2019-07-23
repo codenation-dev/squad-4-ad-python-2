@@ -64,10 +64,12 @@ def should_notify_user(seller, amount):
     weight_sales = get_seller_last_sales(seller=seller, max_last_sales=MAX_LAST_SALES)
 
     seller_has_sales = len(weight_sales)
+    if not seller_has_sales:
+        return False
 
     sales_weighted_average = sales_weight_avg(sales=weight_sales, percentage=PERCENTAGE)
 
-    return True if seller_has_sales and amount < sales_weighted_average else False
+    return True if amount < sales_weighted_average else False
 
 
 def get_seller_last_sales(seller, max_last_sales):
