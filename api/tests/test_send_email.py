@@ -1,14 +1,11 @@
-
 from django.core import mail
-from rest_framework.test import APITestCase
-
 from api.models import Seller, Plan
 from api.tests.base_api_test import BaseApiTest
 
 from api.views.check_comission import send_email_sale_notification
 
 
-class TestMail(BaseApiTest, APITestCase):
+class TestMail(BaseApiTest):
     """
     Tests if email is being send
     """
