@@ -58,11 +58,26 @@ def should_notify_user(seller, amount):
     :param amount: int float
     :return: boolean
     """
-
     MAX_LAST_SALES = 5
     PERCENTAGE = 10
 
-    last_sales = Sale.objects.filter(seller=seller).order_by('-year', '-month')[:MAX_LAST_SALES]
+    weight_sales = get_seller_last_sales(seller=seller, max_last_sales=MAX_LAST_SALES)
+
+    seller_has_sales = len(weight_sales)
+
+    sales_weighted_average = sales_weight_avg(sales=weight_sales, percentage=PERCENTAGE)
+
+    return True if seller_has_sales and amount < sales_weighted_average else False
+
+
+def get_seller_last_sales(seller, max_last_sales):
+    """
+    Returns the seller last max_last_sales
+    :param seller:
+    :param max_last_sales:
+    :return: list
+    """
+    last_sales = Sale.objects.filter(seller=seller).order_by('-year', '-month')[:max_last_sales]
 
     sales_ordered_by_value = sorted(last_sales, key=lambda x: x.amount)
 
@@ -71,9 +86,7 @@ def should_notify_user(seller, amount):
         "weight": weight
     } for weight, sale in enumerate(sales_ordered_by_value, 1)]
 
-    sales_weighted_average = sales_weight_avg(sales=weight_sales, percentage=PERCENTAGE)
-
-    return True if amount < sales_weighted_average else False
+    return weight_sales
 
 
 def send_email_sale_notification(seller):
