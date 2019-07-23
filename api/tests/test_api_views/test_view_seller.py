@@ -69,23 +69,25 @@ class TestViewSeller(BaseApiTest):
             "birthday": "1990-01-02",
             "email": "cc@mail.com",
             "cpf": "33345678901",
-            "plan": 2
+            "plan": Plan.objects.get(id=1)
         }
         seller = Seller.objects.create(**seller_data)
 
         seller_updated_data = {
+
             "name": "Seller CC3",
             "address": "rua C3",
             "phone": "+5546984023433",
             "birthday": "1993-03-03",
             "email": "cc3@mail.com",
             "cpf": "33345678933",
-            "plan": 3
+            "plan": 1
         }
 
         url = reverse("sellers", kwargs={"pk": seller.id})
 
         request = self.client.put(path=url, data=seller_updated_data)
+        self.assertEquals(request.status_code, HTTP_200_OK)
 
         data = request.data
 
