@@ -6,7 +6,7 @@ from api.views.check_comission import get_seller_last_sales
 
 class TestGetSellerLastSales(BaseApiTest):
     """
-    Tests if weighted average is correct
+    Tests function get_seller_last_sales
     """
     def generate_sales(self, seller, year, amount=500):
 
