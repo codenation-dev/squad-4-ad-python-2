@@ -5,11 +5,11 @@ from api.serializer.plan import PlanSerializer
 
 
 class PLanListView(generics.ListCreateAPIView):
-    """ Cadastro dos planos de comissões para que os vendedores possam escolher qual o melhor plano para eles.
-Cada plano possui dum nível básico de remuneração e outro nível maior quando a meta de vendas é cumprida
+    """Planos de Comissões
 
-GET retorna a lista de todos os planos
-POST inclusão de novo plano"""
+
+    Cadastro dos planos de comissões para que os vendedores possam escolher qual o melhor plano para eles.
+    Cada plano possui dum nível básico de remuneração e outro nível maior quando a meta de vendas é cumprida"""
 
     serializer_class = PlanSerializer
 
@@ -18,15 +18,10 @@ POST inclusão de novo plano"""
 
 
 class PlanView(generics.RetrieveUpdateDestroyAPIView):
-    """ Cadastro dos planos de comissões para que os vendedores possam escolher qual o melhor plano para eles.
-Cada plano possui dum nível básico de remuneração e outro nível maior quando a meta de vendas é cumprida
+    """Plano de comissão
 
-{id}: Código do plano
 
-GET Retorna os dados do plano {id}
-PUT Atualização dos dados do plano {id}
-PATCH Atualização parcial dos dados do plano {id}
-DELETE Exclusão do registro"""
+    Gerenciamento do plano de comissão"""
 
     lookup_field = 'pk'
     serializer_class = PlanSerializer
