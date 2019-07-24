@@ -1,7 +1,9 @@
+from decimal import Decimal
+
 from api.models import Seller, Plan, Sale
 from api.tests.base_api_test import BaseApiTest
 
-from api.views.check_comission import sales_weight_avg, get_seller_last_sales
+from api.views.check_comission import comission_weight_avg, get_seller_last_sales
 
 
 class TestSalesWeightAvg(BaseApiTest):
@@ -37,20 +39,20 @@ class TestSalesWeightAvg(BaseApiTest):
         )
 
     def test_sales_weight_avg(self):
-        CONSTANT_AMOUNT = 500
-        MAX_LAST_SALES = 5
-
         seller = self.get_seller()
+        CONSTANT_AMOUNT = Decimal(500.0)
+        PERCENTAGE = Sale.calculate_comission(plan=seller.plan, amount=CONSTANT_AMOUNT)
+        MAX_LAST_SALES = 5
 
         self.generate_const_sales(seller=seller, year=2019, amount=CONSTANT_AMOUNT)
 
         last_sales = get_seller_last_sales(seller=seller, max_last_sales=MAX_LAST_SALES)
 
-        sale_weighted_avg = sales_weight_avg(sales=last_sales)
+        sale_weighted_avg = comission_weight_avg(sales=last_sales)
 
         self.assertEquals(
             sale_weighted_avg,
-            CONSTANT_AMOUNT
+            PERCENTAGE
         )
 
     def test_const_sales_weight_avg(self):
@@ -70,13 +72,16 @@ class TestSalesWeightAvg(BaseApiTest):
 
         weights_sum = january_weight + february_weight
 
-        weighted_avg = ((january_sale.amount * january_weight) + (february_sale.amount * february_weight)) / weights_sum
+        weighted_avg = ((january_sale.comission_value * january_weight) + (february_sale.comission_value * february_weight)) / weights_sum
 
         last_sales = get_seller_last_sales(seller=seller, max_last_sales=MAX_LAST_SALES)
 
-        sale_weighted_avg = sales_weight_avg(sales=last_sales)
+        sale_weighted_avg = comission_weight_avg(sales=last_sales)
 
-        self.assertEquals(
+        decimal_places = 10
+
+        self.assertAlmostEqual(
             sale_weighted_avg,
-            weighted_avg
+            weighted_avg,
+            decimal_places
         )

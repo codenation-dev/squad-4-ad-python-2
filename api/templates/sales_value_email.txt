@@ -2,7 +2,7 @@
 
 Olá {{ seller_name }} como vai?
 
-Verificamos que suas vendas se encontram abaixo de 10% de sua média*.
+Verificamos que suas comissões se encontram abaixo de 10% de sua média*.
 
 * Média aritmética podenderada considerando no máximo os úlltimos 5 meses,
 e os mesês com maior valor tem o maior peso.
