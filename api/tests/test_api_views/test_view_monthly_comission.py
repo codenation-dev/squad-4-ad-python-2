@@ -32,7 +32,6 @@ class TestViewMontlhlyComision(BaseApiTest):
         url = reverse("monthly_comission", kwargs={"month": MONTH})
         request = self.client.get(path=url)
         data = request.data
-        print(f"data {data}")
         self.assertFalse(len(data))
 
     def test_monthly_comission(self):
