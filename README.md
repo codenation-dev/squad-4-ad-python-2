@@ -2,7 +2,10 @@
 
 [Descrição do projeto](descricao.md)
 
-### Equipe | Squad 4:
+### Mentor
+- [Caio Carrara](https://github.com/cacarrara) 
+
+### Integrantes da Squad 4
 
 - [Fábio Matheus Mantelli](https://github.com/fabiomantelli)
 - [Fillipe Calza](https://github.com/fcalza)
@@ -31,6 +34,8 @@ A qual provê interfaces (swagger e redoc) para visualizar a documentação e in
 
 Exemplo da documentação dos endpoints API, acessível em `swagger/`. 
 ![](media/swagger_3.png) 
+
+------
 
 ### Requisitos
 
@@ -112,3 +117,9 @@ Visualizar cobertura em html
 $ coverage html
 ```
 > Apoś executar o comando acima, será possível verificar a cobertura abrindo o arquivo html gerado em `htmlcov/index.html`
+
+----
+
+>Cobertura de código gerada em 23/07/2019, utilizado [coverage]() e [coverage-badge](https://github.com/dbrgn/coverage-badge) 
+> - Projeto ![](media/project_coverage.svg)
+> - API ![](media/api_coverage.svg)

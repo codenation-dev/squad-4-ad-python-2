@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from api.tests.base_api_test import BaseApiTest
 
 from api.models import Seller, Plan, Sale
@@ -26,14 +28,14 @@ class TestShouldNotify(BaseApiTest):
         )
 
     def test_should_not_notify_no_sales(self):
-        AMOUNT = 500
+        AMOUNT = Decimal(500.0)
 
         seller = self.get_seller()
 
         self.assertFalse(should_notify_user(seller=seller, amount=AMOUNT))
 
     def test_should_not_notify(self):
-        AMOUNT = 500
+        AMOUNT = Decimal(500.0)
 
         seller = self.get_seller()
 
@@ -43,8 +45,7 @@ class TestShouldNotify(BaseApiTest):
 
     def test_should_notify(self):
         AMOUNT = 1000
-
-        LOWER_AMOUNT = 100
+        LOWER_AMOUNT = Decimal(100)
 
         seller = self.get_seller()
 
