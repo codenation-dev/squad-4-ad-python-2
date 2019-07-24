@@ -1,21 +1,20 @@
 from decimal import Decimal
-
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from numpy import array, dtype, average
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
-
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-
 from api.models import Seller, Sale
-from numpy import array, dtype, average
-
 from televendas.settings import EMAIL_HOST_USER
 
 
 @api_view(["POST"])
 def check_comission_view(request):
+    """Verifica status de vendas e envia notificação   aos vendedores que estão com a média de comissão baixa
 
+
+    Enviar uma notificação via email para o vendedor que não obtiver um valor acima do cálculo da média de comissões. Para calcular a média do vendedor, deve calcular a média ponderada dos últimos 5 meses desse vendedor considerando os maiores valores com os maiores pesos e se ele estiver abaixo em pelo menos 10% do valor da média deve-se enviar uma notificação para ele.    """
     data = request.data
 
     seller_id = data.get('seller')
