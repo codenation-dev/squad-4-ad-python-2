@@ -66,8 +66,8 @@ class Sale(models.Model):
     @staticmethod
     def calculate_comission(plan: Plan, amount: Decimal):
         if amount >= plan.min_value:
-            comission_value = amount * plan.upper_percentage / 100
+            comission_value = amount * plan.upper_percentage
         else:
-            comission_value = amount * plan.lower_percentage / 100
+            comission_value = amount * plan.lower_percentage
 
         return comission_value
