@@ -1,9 +1,7 @@
 from decimal import Decimal
 
 from api.tests.base_api_test import BaseApiTest
-
 from api.models import Seller, Plan, Sale
-
 from api.views.check_comission import should_notify_user
 
 
@@ -29,26 +27,18 @@ class TestShouldNotify(BaseApiTest):
 
     def test_should_not_notify_no_sales(self):
         AMOUNT = Decimal(500.0)
-
         seller = self.get_seller()
-
         self.assertFalse(should_notify_user(seller=seller, amount=AMOUNT))
 
     def test_should_not_notify(self):
         AMOUNT = Decimal(500.0)
-
         seller = self.get_seller()
-
         self.generate_sales(seller=seller, year=2018, amount=AMOUNT)
-
         self.assertFalse(should_notify_user(seller=seller, amount=AMOUNT))
 
     def test_should_notify(self):
         AMOUNT = 1000
         LOWER_AMOUNT = Decimal(100)
-
         seller = self.get_seller()
-
         self.generate_sales(seller=seller, year=2019, amount=AMOUNT)
-
         self.assertTrue(should_notify_user(seller=seller, amount=LOWER_AMOUNT))
