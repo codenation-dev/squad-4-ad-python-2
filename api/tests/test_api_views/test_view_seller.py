@@ -29,7 +29,6 @@ class TestViewSeller(BaseApiTest):
             "cpf": "12345678901",
             "plan": 1
         }
-
         request = self.client.post(path=self.url_list_post, data=data)
 
         self.assertEquals(request.status_code, HTTP_201_CREATED)
@@ -47,11 +46,8 @@ class TestViewSeller(BaseApiTest):
                 "plan": plan
             }
         )
-
         url = reverse("sellers", kwargs={"pk": seller.id})
-
         request = self.client.get(path=url)
-
         data = request.data
 
         self.assertEquals(seller.name, data.get("name"))
@@ -72,7 +68,6 @@ class TestViewSeller(BaseApiTest):
             "plan": Plan.objects.get(id=1)
         }
         seller = Seller.objects.create(**seller_data)
-
         seller_updated_data = {
 
             "name": "Seller CC3",
@@ -83,14 +78,11 @@ class TestViewSeller(BaseApiTest):
             "cpf": "33345678933",
             "plan": 1
         }
-
         url = reverse("sellers", kwargs={"pk": seller.id})
-
         request = self.client.put(path=url, data=seller_updated_data)
-        self.assertEquals(request.status_code, HTTP_200_OK)
-
         data = request.data
 
+        self.assertEquals(request.status_code, HTTP_200_OK)
         self.assertEquals(seller_updated_data["name"], data.get("name"))
         self.assertEquals(seller_updated_data["address"], data.get("address"))
         self.assertEquals(seller_updated_data["phone"], data.get("phone"))
@@ -111,13 +103,10 @@ class TestViewSeller(BaseApiTest):
                 "plan": plan
             }
         )
-
         url = reverse("sellers", kwargs={"pk": seller.id})
 
         delete_request = self.client.delete(path=url)
-
         self.assertEquals(delete_request.status_code, HTTP_204_NO_CONTENT)
 
         get_request = self.client.get(path=url)
-
         self.assertEquals(get_request.status_code, HTTP_404_NOT_FOUND)

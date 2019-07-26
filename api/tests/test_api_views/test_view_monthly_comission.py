@@ -1,4 +1,5 @@
 from django.urls import reverse
+
 from api.models import Sale, Seller, Plan
 from api.tests.base_api_test import BaseApiTest
 

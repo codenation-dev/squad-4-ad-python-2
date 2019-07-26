@@ -57,8 +57,9 @@ class TestViewSale(BaseApiTest):
         }
         url = reverse("sales", kwargs={"pk": sale.id})
         request = self.client.put(path=url, data=sale_put)
-        self.assertEqual(request.status_code, HTTP_200_OK)
         data = request.data
+
+        self.assertEqual(request.status_code, HTTP_200_OK)
         self.assertEquals(sale_put["amount"], float(data.get("amount")))
 
     def test_delete_sale(self):
@@ -69,13 +70,10 @@ class TestViewSale(BaseApiTest):
             "month": 1,
             "amount": decimal.Decimal(0.1)
         })
-
         url = reverse("sales", kwargs={"pk": sale.id})
 
         delete_request = self.client.delete(path=url)
-
         self.assertEquals(delete_request.status_code, HTTP_204_NO_CONTENT)
 
         get_request = self.client.get(path=url)
-
         self.assertEquals(get_request.status_code, HTTP_404_NOT_FOUND)
