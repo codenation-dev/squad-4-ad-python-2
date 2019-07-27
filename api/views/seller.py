@@ -1,4 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
+
 from rest_framework import generics
 from rest_framework.filters import OrderingFilter
 
@@ -15,12 +16,9 @@ class SellerListView(generics.ListCreateAPIView):
     serializer_class = SellerSerializer
 
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filter_fields = ('name',)
-    # ordering_fields = ('sale__value', 'value')
+    filter_fields = ("name",)
 
     def get_queryset(self):
-        # Duplicated
-        # self.filter_backends = (DjangoFilterBackend, OrderingFilter)
         return Seller.objects.all()
 
 
@@ -30,6 +28,6 @@ class SellerView(generics.RetrieveUpdateDestroyAPIView):
 
     Cadastro de vendedor de telemarketing que vai receber comissões"""
 
-    lookup_field = 'pk'
+    lookup_field = "pk"
     serializer_class = SellerSerializer
     queryset = Seller.objects.all()

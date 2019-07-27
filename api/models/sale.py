@@ -6,6 +6,7 @@ from django.db import models
 
 from api.models.seller import Seller
 from api.models.plan import Plan
+
 from televendas.settings import DEFAULT_MAX_DIGITS, DEFAULT_DECIMAL_PLACES
 
 DEFAULT_COMISSION_VALUE = 0.0
@@ -28,22 +29,18 @@ class Sale(models.Model):
     )
 
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
-
     year = models.IntegerField(
         validators=[
             MaxValueValidator(datetime.datetime.now().year),
             MinValueValidator(1990),
         ]
     )
-
     month = models.PositiveSmallIntegerField(choices=MONTH)
-
     amount = models.DecimalField(
         max_digits=DEFAULT_MAX_DIGITS,
         decimal_places=DEFAULT_DECIMAL_PLACES,
         validators=[MinValueValidator(Decimal("0.0"))],
     )
-
     comission_value = models.DecimalField(
         max_digits=DEFAULT_MAX_DIGITS,
         decimal_places=DEFAULT_DECIMAL_PLACES,
@@ -51,13 +48,12 @@ class Sale(models.Model):
         editable=False,
     )
 
-    class Meta:
-        unique_together = ("seller", "year", "month")
-
     def __str__(self):
-        return "{0}/{1} R$ {2}".format(self.month, self.year, self.amount)
+        return f"Sale - {self.seller.name} - {self.month}/{self.year} - R$ {self.amount}"
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
         self.comission_value = self.calculate_comission(
             plan=self.seller.plan, amount=self.amount
         )

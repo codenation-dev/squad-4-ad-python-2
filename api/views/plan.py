@@ -23,6 +23,6 @@ class PlanView(generics.RetrieveUpdateDestroyAPIView):
 
     Gerenciamento do plano de comissão"""
 
-    lookup_field = 'pk'
+    lookup_field = "pk"
     serializer_class = PlanSerializer
     queryset = Plan.objects.all()

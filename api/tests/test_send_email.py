@@ -1,7 +1,7 @@
 from django.core import mail
+
 from api.models import Seller, Plan
 from api.tests.base_api_test import BaseApiTest
-
 from api.views.check_comission import send_email_sale_notification
 
 
@@ -18,10 +18,10 @@ class TestMail(BaseApiTest):
             name="test",
             address="teste",
             phone="47",
-            birthday='2000-01-01',
+            birthday="2000-01-01",
             email="fake@mail.com",
             cpf="12345678901",
-            plan=Plan.objects.all().first()
+            plan=Plan.objects.all().first(),
         )
         send_email_sale_notification(seller=seller)
         self.assertEqual(len(mail.outbox), 1)
