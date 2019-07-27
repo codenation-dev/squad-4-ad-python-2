@@ -11,9 +11,5 @@ class BaseApiTest(APITestCase):
     password: senha@123
     """
 
-    fixtures = [
-        'fixtures/api.yaml',
-        'fixtures/users.yaml',
-    ]
-
-    user = User.objects.get(username='luan')
+    fixtures = ["fixtures/api.yaml", "fixtures/users.yaml"]
+    user = User.objects.get(username="luan")

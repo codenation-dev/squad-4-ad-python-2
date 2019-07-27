@@ -10,47 +10,20 @@ class TestFixtures(BaseApiTest):
     """
 
     def test_user_from_fixture(self):
-
-        user = User.objects.filter(
-            username="luan",
-            email="luan@luan.com"
-        ).exists()
-
-        self.assertTrue(
-            user
-        )
+        user = User.objects.filter(username="luan", email="luan@luan.com")
+        self.assertTrue(user.exists())
 
     def test_seller_from_fixture(self):
-
         seller = Seller.objects.filter(
-            name="Primeiro Vendedor",
-            address="Joinville",
-            cpf="12345678901"
-        ).exists()
-
-        self.assertTrue(
-            seller
+            name="Primeiro Vendedor", address="Joinville", cpf="12345678901"
         )
+        self.assertTrue(seller.exists())
 
     def test_plan_from_fixture(self):
-
-        plan = Plan.objects.filter(
-            name="Primeiro plano",
-            min_value=4500.0
-        )
-
-        self.assertTrue(
-            plan
-        )
+        plan = Plan.objects.filter(name="Primeiro plano", min_value=4500.0)
+        self.assertTrue(plan.exists())
 
     def test_sale_from_fixture(self):
-
         SALE_EXISTS = False
-
-        sale = Sale.objects.all().exists()
-
-        self.assertEquals(
-            sale,
-            SALE_EXISTS,
-            "Não deveria haver vendas"
-        )
+        sale = Sale.objects.all()
+        self.assertEquals(sale.exists(), SALE_EXISTS, "Não deveria haver vendas")
